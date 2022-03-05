@@ -16,10 +16,14 @@
   <h1>Available flights</h1>
   
   <% unless @flights.nil? %>
-    <% @flights.each do |flight| %>
-      <div>
-      <p><strong>Leaves from: </strong><%= flight.departing_airport.code %>, <strong>Arrives at:</strong> <%= flight.arriving_airport.code %>, <strong>Departs:</strong> <%= flight.departure_time %>, <strong>Flight Duration:</strong> <%= flight.flight_duration %></p>
-      </div>
+    <%= form_with url: "/bookings/new", :method => 'get' do |f| %>
+      <% @flights.each do |flight| %>
+        <div>
+        <%= radio_button_tag "flight_id", flight.id, false, style: "display:inline;"  %>
+        <p style="display:inline;"><strong>Leaves from: </strong><%= flight.departing_airport.code %>, <strong>Arrives at:</strong> <%= flight.arriving_airport.code %>, <strong>Departs:</strong> <%= flight.departure_time %>, <strong>Flight Duration:</strong> <%= flight.flight_duration %></p>
+        </div>
+      <% end %>
+      <%= f.submit "Book flight" %>
     <% end %>
   <% end %>
 </div>
