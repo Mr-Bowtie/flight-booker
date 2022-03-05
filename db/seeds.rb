@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 tables = [Airport, Flight]
-airport_codes = ['SFO', 'DFW', 'PHL']
+airport_details = [['San Francisco, CA', 'SFO'], ['Dallas, TX', 'DFW'], ['Philadelphia, PA', 'PHL']]
 durations = {
   'SFO' => {
     'DFW' => 1,
@@ -26,7 +26,7 @@ start = Date.today
 finish = (Date.today + 31.days)
 
 # tables.each { |table| table.delete_all }
-airport_codes.each { |code| Airport.create(code: code) }
+airport_details.each { |location, code| Airport.create(code: code, location: location) }
 
 Airport.all.each do |airport|
   destinations = Airport.where('code != ?', airport.code).all
