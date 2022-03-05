@@ -1,0 +1,13 @@
+<h1>Search for flights</h1>
+
+<%= form_tag '/', :method => 'get' do %>
+  <%= label_tag :departing_airport, "From" %>
+  <%= select_tag "search[departing_airport]", options_for_select(@airport_options) %>
+  <%= label_tag :arriving_airport, "To" %>
+  <%= select_tag "search[arriving_airport]", options_for_select(@airport_options) %>
+  <%= label_tag :number_of_passengers, "Number of passengers" %>
+  <%= select_tag "search[number_of_passengers]", options_for_select([ ["1", 1], ["2", 2], ["3", 3], ["4", 4] ]) %>
+  <%= label_tag :flight_date, "Travel date" %>
+  <%= select_tag "search[flight_date]", options_for_select(@flight_date_options) %>
+  <%= submit_tag("Search for flights", :name => nil) %>
+<% end %>
