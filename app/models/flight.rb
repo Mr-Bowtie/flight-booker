@@ -3,7 +3,11 @@ class Flight < ApplicationRecord
   belongs_to :departing_airport, class_name: 'Airport'
 
   def self.search(input)
-    self.where('departing_airport = ? and arriving_airport = ? and DATE(departure_time) = ?', input[0], input[1])
+    if input.nil?
+      nil
+    else
+      self.where('departing_airport_id = ? and arriving_airport_id = ? and DATE(departure_time) = ?', input['departing_airport'], input['arriving_airport'], Date.parse(input['flight_date']))
+    end
   end
 
   def self.get_dates
@@ -12,6 +16,6 @@ class Flight < ApplicationRecord
   end
 
   def format_flight_date
-    departure_time.strftime('%m-%d-%Y')
+    departure_time.strftime('%B-%d-%Y')
   end
 end

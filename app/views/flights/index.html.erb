@@ -11,3 +11,15 @@
   <%= select_tag "search[flight_date]", options_for_select(@flight_date_options) %>
   <%= submit_tag("Search for flights", :name => nil) %>
 <% end %>
+
+<div class="flights">
+  <h1>Available flights</h1>
+  
+  <% unless @flights.nil? %>
+    <% @flights.each do |flight| %>
+      <div>
+      <p><strong>Leaves from: </strong><%= flight.departing_airport.code %>, <strong>Arrives at:</strong> <%= flight.arriving_airport.code %>, <strong>Departs:</strong> <%= flight.departure_time %>, <strong>Flight Duration:</strong> <%= flight.flight_duration %></p>
+      </div>
+    <% end %>
+  <% end %>
+</div>
