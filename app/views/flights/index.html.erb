@@ -23,6 +23,7 @@
         <p style="display:inline;"><strong>Leaves from: </strong><%= flight.departing_airport.code %>, <strong>Arrives at:</strong> <%= flight.arriving_airport.code %>, <strong>Departs:</strong> <%= flight.departure_time %>, <strong>Flight Duration:</strong> <%= flight.flight_duration %></p>
         </div>
       <% end %>
+      <%= hidden_field_tag 'number_of_passengers', params["search"]["number_of_passengers"] %>
       <%= f.submit "Book flight" %>
     <% end %>
   <% end %>
